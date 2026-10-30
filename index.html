@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b1220">
+<title>个人网络工具箱</title>
+<style>
+:root{color-scheme:dark;--bg:#0b1220;--panel:#121e30;--line:#263951;--muted:#9aacc2;--blue:#4c9cff;--text:#edf4ff}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -20%,#1b3a61 0,transparent 55%),var(--bg);color:var(--text);font:15px/1.6 system-ui,-apple-system,"Microsoft YaHei",sans-serif}
+header{padding:48px 20px 34px;text-align:center;border-bottom:1px solid var(--line)}header .mark{font-size:34px}h1{font-size:clamp(26px,5vw,38px);margin:8px 0}header p{color:var(--muted);margin:0}
+main{max-width:1050px;margin:30px auto;padding:0 18px 48px}.section{margin:28px 0}.section h2{font-size:19px;margin:0 0 14px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.card{background:linear-gradient(145deg,#16253a,#101a2a);border:1px solid var(--line);border-radius:16px;padding:19px;min-width:0}.card h3{font-size:16px;margin:8px 0 4px}.card p{color:var(--muted);font-size:13px;margin:0 0 14px;min-height:40px}.emoji{font-size:25px}
+.btn{display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:9px;background:#246fc4;color:white;text-decoration:none;padding:9px 13px;font:inherit;font-size:13px;cursor:pointer}.btn:hover{background:#3489e9}.btn.secondary{background:#263951}.btn:disabled{opacity:.5;cursor:wait}
+.tools{display:flex;gap:8px;flex-wrap:wrap}.result{color:#b8d8ff;font-size:13px;overflow-wrap:anywhere;margin-top:10px;white-space:pre-wrap}
+input{width:100%;background:#0b1524;color:var(--text);border:1px solid #344a65;border-radius:9px;padding:10px;margin:5px 0 10px;font:inherit}
+.small{font-size:12px;color:var(--muted)}footer{text-align:center;color:#7589a2;padding:22px;border-top:1px solid var(--line);font-size:12px}
+a{color:#8fc4ff} .notice{background:#17283c;border:1px solid #314963;padding:13px 15px;border-radius:12px;color:#b9cbe0;font-size:13px}
+</style>
+</head>
+<body>
+<header><div class="mark">🌐</div><h1>个人网络工具箱</h1><p>网络检测 · DNS 查询 · Cloudflare · 我的 IP 数据</p></header>
+<main>
+  <div class="notice">这是你的个人静态工具导航页。部分检测会向第三方服务发送查询请求；请勿在这里输入密码、订阅链接或其他敏感信息。</div>
+
+  <section class="section">
+    <h2>🔎 即时网络检测</h2>
+    <div class="grid">
+      <article class="card">
+        <div class="emoji">🌍</div><h3>公网 IP 与网络信息</h3>
+        <p>查询当前浏览器出口 IP、国家/地区和网络运营商（由第三方接口提供）。</p>
+        <button class="btn" id="ipBtn">查询我的 IP</button><div class="result" id="ipResult" aria-live="polite"></div>
+      </article>
+      <article class="card">
+        <div class="emoji">🔍</div><h3>DNS 查询</h3>
+        <p>输入域名，查询 A、AAAA、CNAME 等 DNS 记录。</p>
+        <label class="small" for="domain">域名</label><input id="domain" placeholder="例如 example.com" autocomplete="off">
+        <div class="tools"><button class="btn" id="dnsA">查询 A</button><button class="btn secondary" id="dnsAAAA">查询 AAAA</button></div>
+        <div class="result" id="dnsResult" aria-live="polite"></div>
+      </article>
+      <article class="card">
+        <div class="emoji">⚡</div><h3>网络速度测试</h3>
+        <p>打开 Cloudflare Speed Test，测试下载、上传和延迟表现。</p>
+        <a class="btn" href="https://speed.cloudflare.com/" target="_blank" rel="noopener noreferrer">开始测速 ↗</a>
+      </article>
+      <article class="card">
+        <div class="emoji">🛡️</div><h3>浏览器 WebRTC 检测</h3>
+        <p>检查浏览器 WebRTC 可能暴露的网络地址。结果取决于浏览器和代理设置。</p>
+        <a class="btn" href="https://browserleaks.com/webrtc" target="_blank" rel="noopener noreferrer">打开检测 ↗</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>☁️ Cloudflare 常用入口</h2>
+    <div class="grid">
+      <article class="card"><div class="emoji">☁️</div><h3>Cloudflare 控制台</h3><p>管理域名、DNS、Workers 和 Pages 项目。</p><a class="btn" href="https://dash.cloudflare.com/" target="_blank" rel="noopener noreferrer">进入控制台 ↗</a></article>
+      <article class="card"><div class="emoji">📚</div><h3>Cloudflare 文档</h3><p>查阅官方产品说明、配置指南和故障排查资料。</p><a class="btn" href="https://developers.cloudflare.com/" target="_blank" rel="noopener noreferrer">打开文档 ↗</a></article>
+      <article class="card"><div class="emoji">🧪</div><h3>DNS Checker</h3><p>从多个地区查看域名解析结果。</p><a class="btn" href="https://dnschecker.org/" target="_blank" rel="noopener noreferrer">开始查询 ↗</a></article>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>📂 我的 GitHub IP 数据库</h2>
+    <div class="grid">
+      <article class="card"><div class="emoji">📄</div><h3>优选 IP 列表</h3><p>打开你当前仓库中的 1031.txt。若之后更改文件名，请同步修改下方链接。</p><a class="btn" href="https://raw.githubusercontent.com/tekkenner2026/list/main/1031.txt" target="_blank" rel="noopener noreferrer">查看 TXT ↗</a></article>
+      <article class="card"><div class="emoji">🗂️</div><h3>管理我的仓库</h3><p>上传、编辑、重命名和维护自己的 TXT 文件。</p><a class="btn" href="https://github.com/tekkenner2026/list" target="_blank" rel="noopener noreferrer">打开 GitHub ↗</a></article>
+    </div>
+  </section>
+  <p class="small">提示：本网站不会自动测试或验证 TXT 中 IP 的可用性，也不会自动更新 EDT。列表内容由你在 GitHub 仓库中维护。</p>
+</main>
+<footer>个人网络工具箱 · 使用 GitHub Pages 发布 · 第三方服务由各自提供商运营</footer>
+<script>
+const $=id=>document.getElementById(id);
+$("ipBtn").addEventListener("click",async()=>{
+ const b=$("ipBtn"),r=$("ipResult");b.disabled=true;r.textContent="正在查询…";
+ try{
+  const res=await fetch("https://ipwho.is/");
+  if(!res.ok)throw new Error("查询服务暂时不可用");
+  const d=await res.json();if(!d.success)throw new Error(d.message||"查询失败");
+  r.textContent=`IP：${d.ip}\n地区：${[d.city,d.region,d.country].filter(Boolean).join(", ")}\n运营商：${d.connection?.isp||"未提供"}\n注意：地理位置和运营商信息可能存在误差。`;
+ }catch(e){r.textContent="查询失败："+e.message+"。你也可以打开 ipinfo.io 手动查询。"}
+ finally{b.disabled=false}
+});
+async function dns(type){
+ const domain=$("domain").value.trim().replace(/^https?:\/\//,"").replace(/\/.*$/,"");
+ const r=$("dnsResult");if(!domain){r.textContent="请先输入域名。";return}
+ if(!/^(?=.{1,253}$)([a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)(\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/.test(domain)){r.textContent="域名格式看起来不正确，请检查后重试。";return}
+ r.textContent="正在查询…";
+ try{
+  const u=`https://cloudflare-dns.com/dns-query?name=${encodeURIComponent(domain)}&type=${type}`;
+  const res=await fetch(u,{headers:{accept:"application/dns-json"}});
+  if(!res.ok)throw new Error("DNS 查询服务暂时不可用");
+  const d=await res.json();
+  const answers=d.Answer||[];
+  r.textContent=answers.length?answers.map(x=>`${x.name}  ${x.type===1?"A":x.type===28?"AAAA":x.type}  ${x.data}  (TTL ${x.TTL})`).join("\n"):`没有找到 ${type} 记录（状态码 ${d.Status}）。`;
+ }catch(e){r.textContent="查询失败："+e.message}
+}
+$("dnsA").addEventListener("click",()=>dns("A"));
+$("dnsAAAA").addEventListener("click",()=>dns("AAAA"));
+</script>
+</body>
+</html>
